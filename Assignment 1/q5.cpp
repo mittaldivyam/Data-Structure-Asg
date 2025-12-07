@@ -1,63 +1,41 @@
 #include <iostream>
 using namespace std;
 
-void reverse(int arr[], int size) {
-    for (int i = 0; i < size/2; i++)
-    {
-        swap(arr[i], arr[size - i - 1]);
-    }
-}    
+int main() {
+    int r, c;
+    cout << "Enter number of rows: ";
+    cin >> r;
+    cout << "Enter number of columns: ";
+    cin >> c;
 
-void print_array(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-}
+    int arr[20][20];
 
-void matrix_multiply(int a[2][3], int b[3][2], int c[2][2]) {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            c[i][j] = 0;
-            for (int k = 0; k < 3; k++) {
-                c[i][j] += a[i][k] * b[k][j];
-            }
+    cout << "Enter the elements of the matrix:\n";
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cin >> arr[i][j];
         }
     }
-}
-void print_matrix(int matrix[2][2]) {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            cout << matrix[i][j] << " ";
+
+    // Row sums
+    cout << "\nSum of each row:\n";
+    for (int i = 0; i < r; i++) {
+        int sum = 0;
+        for (int j = 0; j < c; j++) {
+            sum += arr[i][j];
         }
-        cout << endl;
+        cout << "Row " << i << " = " << sum << endl;
     }
-}
 
-void transpose(int arr[2][3],int d[3][2]) {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 3; j++) {
-            d[j][i] = arr[i][j];
+    // Column sums
+    cout << "\nSum of each column:\n";
+    for (int j = 0; j < c; j++) {
+        int sum = 0;
+        for (int i = 0; i < r; i++) {
+            sum += arr[i][j];
         }
+        cout << "Column " << j << " = " << sum << endl;
     }
-}
 
-int main(){
-
-    int arr[5] = {1, 2, 3, 4, 5};
-    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};
-    int b[3][2] = {{7, 8}, {9, 10}, {11, 12}};
-    int c[2][2];
-    int d[3][2];
-    reverse(arr, 5);
-    cout << "Reversed array: ";
-    print_array(arr, 5);
-    cout << endl;
-    matrix_multiply(a, b, c);
-    cout << "Matrix multiplication result: " << endl;
-    print_matrix(c);
-    cout << endl;
-    transpose(a, d);
-    cout << "Transposed matrix: " << endl;
-    print_matrix(d);
-    cout << endl;
+    return 0;
 }
